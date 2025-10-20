@@ -16,7 +16,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void createJob(JobRequest request) {
+    public void addJob(JobRequest request) {
         Job job = new Job();
         job.setTitle(request.title());
         job.setCompanyName(request.companyName());

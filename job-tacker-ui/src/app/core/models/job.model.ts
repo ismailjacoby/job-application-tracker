@@ -1,0 +1,17 @@
+import { ApplicationStatus } from './application-status.enum';
+import { JobSource } from './job-source.enum';
+
+export interface Job {
+  title: string;
+  companyName: string;
+  location: string;
+  jobUrl: string;
+  jobSource: JobSource;
+  status: ApplicationStatus;
+  dateApplied?: string;
+  recruiterName?: string;
+  recruiterEmail?: string;
+  recruiterPhone?: string;
+  salary?: string;
+  notes?: string;
+}

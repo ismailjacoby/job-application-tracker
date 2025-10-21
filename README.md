@@ -14,6 +14,15 @@ It provides a central place to log job applications, track progress, manage recr
 
 
 ## 🚀 Current Features
-- **Add Job**  
+### 🔒 Authentication
+- [x] Signup
+- [x] Login
+
+### 💼 Job
+- [x] Add Job
+- [x] Get Job
+- [x] Get Jobs
+- [x] Update Job
+- [x] Delete Job
 
 

@@ -1,5 +1,7 @@
 package com.ismailjacoby.jobtrackerapi.controller;
 
+import com.ismailjacoby.jobtrackerapi.exception.NotFoundException;
+import com.ismailjacoby.jobtrackerapi.model.dto.JobDTO;
 import com.ismailjacoby.jobtrackerapi.model.dto.JobShortDTO;
 import com.ismailjacoby.jobtrackerapi.model.request.JobRequest;
 import com.ismailjacoby.jobtrackerapi.service.JobService;
@@ -23,6 +25,13 @@ public class JobController {
     public ResponseEntity<String> addJob(@RequestBody @Valid JobRequest request) {
         jobService.addJob(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("Job added successfully");
+    }
+
+    @GetMapping("${id}")
+    public ResponseEntity<JobDTO> getJobById(@PathVariable Long id) {
+        return jobService.getJobById(id)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new NotFoundException("Job with id: " + id + " not found."));
     }
 
     @GetMapping

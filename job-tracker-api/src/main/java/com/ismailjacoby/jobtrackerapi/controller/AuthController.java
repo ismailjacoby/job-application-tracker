@@ -1,5 +1,7 @@
 package com.ismailjacoby.jobtrackerapi.controller;
 
+import com.ismailjacoby.jobtrackerapi.model.dto.AuthDTO;
+import com.ismailjacoby.jobtrackerapi.model.request.LoginRequest;
 import com.ismailjacoby.jobtrackerapi.model.request.SignupRequest;
 import com.ismailjacoby.jobtrackerapi.service.AuthService;
 import jakarta.validation.Valid;
@@ -18,6 +20,12 @@ public class AuthController {
 
     public AuthController(AuthService authService) {
         this.authService = authService;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthDTO> login(@RequestBody @Valid LoginRequest request) {
+        AuthDTO authDTO = authService.login(request);
+        return ResponseEntity.ok(authDTO);
     }
 
     @PostMapping("/signup")

@@ -1,6 +1,7 @@
 package com.ismailjacoby.jobtrackerapi.exception;
 
 import com.ismailjacoby.jobtrackerapi.model.dto.ErrorResponseDTO;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,20 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    // BadCredentialsException (incorrect username or password)
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponseDTO handleBadCredentialsException(BadCredentialsException e) {
+        return new ErrorResponseDTO("Authentication failed", e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    // DuplicateException
+    @ExceptionHandler(DuplicateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponseDTO handleDuplicateException(DuplicateException e) {
+        return new ErrorResponseDTO("Duplicate Found", e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     // IllegalArgumentException
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -24,7 +39,7 @@ public class GlobalExceptionHandler {
         return new ErrorResponseDTO("Invalid Argument", e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    // MethodArgumentNotValidException (Validation errors)
+    // MethodArgumentNotValidException (Validations)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponseDTO handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {

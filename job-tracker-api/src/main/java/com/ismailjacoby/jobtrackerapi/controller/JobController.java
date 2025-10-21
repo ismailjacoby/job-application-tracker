@@ -22,8 +22,8 @@ public class JobController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addJob(@RequestBody @Valid JobRequest request) {
-        jobService.addJob(request);
+    public ResponseEntity<String> createJob(@RequestBody @Valid JobRequest request) {
+        jobService.createJob(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("Job added successfully");
     }
 
@@ -37,5 +37,18 @@ public class JobController {
     @GetMapping
     public ResponseEntity<List<JobShortDTO>> getJobs() {
         return ResponseEntity.ok(jobService.getJobs());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<JobDTO> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest request) {
+        JobDTO updatedJob = jobService.updateJob(id, request);
+
+        return ResponseEntity.ok(updatedJob);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteJobById(@PathVariable Long id) {
+        jobService.deleteJobById(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -7,7 +7,6 @@ import com.ismailjacoby.jobtrackerapi.model.entity.Job;
 import com.ismailjacoby.jobtrackerapi.model.request.JobRequest;
 import com.ismailjacoby.jobtrackerapi.repository.JobRepository;
 import com.ismailjacoby.jobtrackerapi.service.JobService;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void addJob(JobRequest request) {
+    public void createJob(JobRequest request) {
         Job job = new Job();
         job.setTitle(request.title());
         job.setCompanyName(request.companyName());
@@ -52,5 +51,36 @@ public class JobServiceImpl implements JobService {
         return jobRepository.findAll().stream()
                 .map(JobShortDTO::fromEntity)
                 .toList();
+    }
+
+    @Override
+    public JobDTO updateJob(Long id, JobRequest request) {
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Job with id " + id + " not found."));
+
+        job.setTitle(request.title());
+        job.setCompanyName(request.companyName());
+        job.setLocation(request.location());
+        job.setJobUrl(request.jobUrl());
+        job.setJobSource(request.jobSource());
+        job.setStatus(request.status());
+        job.setDateApplied(request.dateApplied());
+        job.setRecruiterName(request.recruiterName());
+        job.setRecruiterEmail(request.recruiterEmail());
+        job.setRecruiterPhone(request.recruiterPhone());
+        job.setSalary(request.salary());
+        job.setNotes(request.notes());
+
+        Job updatedJob = jobRepository.save(job);
+
+        return JobDTO.fromEntity(updatedJob);
+    }
+
+    @Override
+    public void deleteJobById(Long id) {
+        if (!jobRepository.existsById(id)) {
+            throw new NotFoundException("Job with id " + id + " not found.");
+        }
+        jobRepository.deleteById(id);
     }
 }

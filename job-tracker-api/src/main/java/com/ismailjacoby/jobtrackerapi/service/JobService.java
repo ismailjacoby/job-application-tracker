@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface JobService {
-    void addJob(JobRequest request);
+    void createJob(JobRequest request);
     Optional<JobDTO> getJobById(Long id);
     List<JobShortDTO> getJobs();
+    JobDTO updateJob(Long id, JobRequest request);
+    void deleteJobById(Long id);
 }

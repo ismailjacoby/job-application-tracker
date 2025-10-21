@@ -1,6 +1,7 @@
 package com.ismailjacoby.jobtrackerapi.model.dto;
 
 import com.ismailjacoby.jobtrackerapi.model.entity.Job;
+import com.ismailjacoby.jobtrackerapi.model.enums.ApplicationStatus;
 import com.ismailjacoby.jobtrackerapi.model.enums.JobSource;
 
 import java.time.LocalDate;
@@ -12,7 +13,7 @@ public record JobShortDTO (
         String location,
         LocalDate dateApplied,
         String salary,
-        String status,
+        ApplicationStatus status,
         JobSource jobSource,
         String jobUrl)
 {
@@ -25,7 +26,7 @@ public record JobShortDTO (
                 job.getLocation(),
                 job.getDateApplied(),
                 job.getSalary(),
-                job.getStatus().name(),
+                job.getStatus(),
                 job.getJobSource(),
                 job.getJobUrl()
         );

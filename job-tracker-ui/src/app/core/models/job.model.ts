@@ -15,3 +15,15 @@ export interface Job {
   salary?: string;
   notes?: string;
 }
+
+export interface JobShort {
+  id: number;
+  title: string;
+  companyName: string;
+  location: string;
+  jobUrl: string;
+  jobSource: JobSource;
+  status: ApplicationStatus;
+  dateApplied?: string;
+  salary?: string;
+}

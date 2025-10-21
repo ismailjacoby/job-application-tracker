@@ -9,11 +9,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { JobService } from '../../../../core/services/job-service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-job-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './job-form.html',
   styleUrl: './job-form.css',
 })

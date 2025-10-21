@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { jobRoutes } from './features/jobs/pages/job.routes';
 import { DashboardLayout } from './features/layout/dashboard-layout/dashboard-layout';
 
 export const routes: Routes = [
@@ -17,10 +18,10 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'jobs/create',
-        loadComponent: () =>
-          import('./features/jobs/pages/job-form/job-form').then(
-            (m) => m.JobForm
+        path: 'jobs',
+        loadChildren: () =>
+          import('./features/jobs/pages/job.routes').then(
+            (m) => m.jobRoutes
           ),
       },
     ],

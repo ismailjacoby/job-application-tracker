@@ -1,10 +1,13 @@
 package com.ismailjacoby.jobtrackerapi.service.impl;
 
+import com.ismailjacoby.jobtrackerapi.model.dto.JobShortDTO;
 import com.ismailjacoby.jobtrackerapi.model.entity.Job;
 import com.ismailjacoby.jobtrackerapi.model.request.JobRequest;
 import com.ismailjacoby.jobtrackerapi.repository.JobRepository;
 import com.ismailjacoby.jobtrackerapi.service.JobService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -32,5 +35,12 @@ public class JobServiceImpl implements JobService {
         job.setNotes(request.notes());
 
         jobRepository.save(job);
+    }
+
+    @Override
+    public List<JobShortDTO> getJobs() {
+        return jobRepository.findAll().stream()
+                .map(JobShortDTO::fromEntity)
+                .toList();
     }
 }

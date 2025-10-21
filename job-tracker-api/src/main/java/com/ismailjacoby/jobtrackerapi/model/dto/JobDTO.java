@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record JobDTO(
+        Long id,
         String title,
         String companyName,
         String location,

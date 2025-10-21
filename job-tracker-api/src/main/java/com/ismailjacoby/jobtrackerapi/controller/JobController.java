@@ -27,11 +27,11 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Job added successfully");
     }
 
-    @GetMapping("${id}")
+    @GetMapping("/{id}")
     public ResponseEntity<JobDTO> getJobById(@PathVariable Long id) {
         return jobService.getJobById(id)
                 .map(ResponseEntity::ok)
-                .orElseThrow(() -> new NotFoundException("Job with id: " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Job with id " + id + " not found."));
     }
 
     @GetMapping

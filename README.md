@@ -19,7 +19,7 @@ It provides a central place to log job applications, track progress, manage recr
 - [x] Login
 
 ### 💼 Job
-- [x] Add Job
+- [x] Create Job
 - [x] Get Job
 - [x] Get Jobs
 - [x] Update Job

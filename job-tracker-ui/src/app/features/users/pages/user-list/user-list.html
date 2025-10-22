@@ -1,0 +1,66 @@
+<div class="p-4">
+  <h1 class="text-2xl mb-4">Users</h1>
+
+  <table class="min-w-full border rounded-lg overflow-hidden">
+    <thead class="bg-gray-100 text-left">
+    <tr>
+      <th class="p-2 font-medium">ID</th>
+      <th class="p-2 font-medium">Name</th>
+      <th class="p-2 font-medium">Email</th>
+      <th class="p-2 font-medium">Role</th>
+      <th class="p-2 font-medium">Status</th>
+      <th class="p-2 font-medium text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track user.id) {
+        <tr class="border-b border-b-neutral-100 hover:bg-gray-50">
+          <td class="p-2">{{ user.id }}</td>
+          <td class="p-2">{{ user.firstName }} {{ user.lastName }}</td>
+          <td class="p-2">{{ user.email }}</td>
+          <td class="p-2">{{ user.role }}</td>
+          <td class="p-2">
+            <span
+              [ngClass]="{
+                'text-green-600 font-medium': user.enabled,
+                'text-red-600 font-medium': !user.enabled
+              }"
+            >
+              {{ user.enabled ? 'Active' : 'Disabled' }}
+            </span>
+          </td>
+          <td class="p-2 text-center">
+            <button
+              class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-medium transition cursor-pointer"
+              (click)="editUser(user.id)"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="flex justify-between mt-4">
+    <button
+      class="px-3 py-1 bg-neutral-200 rounded disabled:opacity-50"
+      (click)="prevPage()"
+      [disabled]="currentPage === 0"
+    >
+      Prev
+    </button>
+
+    <span class="text-sm text-gray-600">
+      Page {{ currentPage + 1 }} / {{ totalPages }}
+    </span>
+
+    <button
+      class="px-3 py-1 bg-neutral-200 rounded disabled:opacity-50"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages - 1"
+    >
+      Next
+    </button>
+  </div>
+</div>

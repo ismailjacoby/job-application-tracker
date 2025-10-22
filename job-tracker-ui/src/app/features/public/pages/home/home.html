@@ -1,0 +1,93 @@
+<!-- Navbar -->
+<header class="w-full py-4 px-6 flex justify-between items-center bg-white shadow-sm fixed top-0 left-0 z-50">
+  <div class="flex items-center gap-2">
+    <span class="text-lg font-semibold text-gray-900">Job Tracker</span>
+  </div>
+
+  <button
+    [routerLink]="['/auth/login']"
+    class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition cursor-pointer"
+  >
+    Login / Signup
+  </button>
+</header>
+
+<!-- Hero Section -->
+<section
+  class="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-neutral-50 to-white pt-24"
+>
+  <div class="max-w-4xl">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+      Simplify Your Job Search with <span class="text-blue-600">Job Tracker</span>
+    </h1>
+    <p class="text-gray-600 text-lg md:text-xl mb-8">
+      Keep all your job applications organized, track progress, and manage recruiter details — all in one easy-to-use
+      dashboard.
+    </p>
+
+    <button
+      [routerLink]="['/auth/signup']"
+      class="px-6 py-3 bg-blue-600 text-white text-lg rounded-lg shadow hover:bg-blue-700 transition cursor-pointer"
+    >
+      Get Started
+    </button>
+  </div>
+
+  <div class="mt-16 max-w-5xl mx-auto">
+    <img
+      src="/images/placeholder.png"
+      alt="Job Tracker Dashboard Preview"
+      class="rounded-2xl shadow-lg border border-neutral-200"
+    />
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white text-center">
+  <h2 class="text-3xl font-semibold text-gray-800 mb-12">Why You'll Love Job Tracker</h2>
+
+  <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
+    <div class="p-6 border rounded-xl hover:shadow-md transition">
+      <div class="text-blue-600 text-4xl mb-3">💼</div>
+      <h3 class="font-semibold text-xl mb-2">Track Every Application</h3>
+      <p class="text-gray-600">
+        Add details like company name, recruiter contact, status, and salary — all neatly stored and easy to update.
+      </p>
+    </div>
+
+    <div class="p-6 border rounded-xl hover:shadow-md transition">
+      <div class="text-blue-600 text-4xl mb-3">📈</div>
+      <h3 class="font-semibold text-xl mb-2">Stay Organized & In Control</h3>
+      <p class="text-gray-600">
+        Filter and manage applications by date, source, or status so you never miss an interview or follow-up.
+      </p>
+    </div>
+
+    <div class="p-6 border rounded-xl hover:shadow-md transition">
+      <div class="text-blue-600 text-4xl mb-3">🔒</div>
+      <h3 class="font-semibold text-xl mb-2">Secure & Personalized</h3>
+      <p class="text-gray-600">
+        Your data is safely stored with secure authentication and role-based access for users and admins.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 bg-blue-600 text-white text-center">
+  <h2 class="text-3xl font-semibold mb-4">Ready to Level Up Your Job Hunt?</h2>
+  <p class="text-blue-100 mb-8 text-lg">
+    Sign up today and start tracking your applications effortlessly.
+  </p>
+  <button
+    [routerLink]="['/auth/signup']"
+    class="px-8 py-3 bg-white text-blue-600 font-medium rounded-lg shadow hover:bg-neutral-100 transition cursor-pointer"
+  >
+    Get Started for Free
+  </button>
+</section>
+
+<!-- Footer -->
+<footer class="py-6 bg-neutral-50 text-center text-gray-500 text-sm">
+  © 2025 Ismail Jacoby
+</footer>

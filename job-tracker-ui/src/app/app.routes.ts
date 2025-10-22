@@ -1,8 +1,16 @@
 import { Routes } from '@angular/router';
 import { jobRoutes } from './features/jobs/pages/job.routes';
 import { DashboardLayout } from './features/layout/dashboard-layout/dashboard-layout';
+import {Home} from './features/public/pages/home/home';
 
 export const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: Home},
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/auth/auth.routes').then((m) => m.authRoutes),
+  },
   {
     path: 'app',
     loadComponent: () =>

@@ -1,7 +1,8 @@
 package com.ismailjacoby.jobtrackerapi.controller;
 
-import com.ismailjacoby.jobtrackerapi.model.dto.UserShortDTO;
+import com.ismailjacoby.jobtrackerapi.model.dto.UserDTO;
 import com.ismailjacoby.jobtrackerapi.model.request.PasswordRequest;
+import com.ismailjacoby.jobtrackerapi.model.request.UserAdminUpdateRequest;
 import com.ismailjacoby.jobtrackerapi.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,22 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserShortDTO>> getUsers(){
+    public ResponseEntity<List<UserDTO>> getUsers(){
         return ResponseEntity.ok(userService.getUsers());
     }
 
     @PutMapping("/password/{id}")
-    public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestBody @Valid PasswordRequest request){
+    public ResponseEntity<String> changePassword(@PathVariable Long id,
+                                                 @RequestBody @Valid PasswordRequest request){
         userService.changePassword(id, request);
         return ResponseEntity.ok("Password changed successfully");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> changeUserByAdmin(@PathVariable Long id,
+                                                    @RequestBody @Valid UserAdminUpdateRequest request){
+        userService.updateUserByAdmin(id, request);
+        return ResponseEntity.ok("User updated successfully");
+
     }
 }

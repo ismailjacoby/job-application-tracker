@@ -28,7 +28,28 @@ export class Login {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm.value);
+    if(this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.errorMessage = '';
+
+    const credentials = this.loginForm.value;
+
+    this.authService.login(credentials).subscribe({
+      next: (response) => {
+        this.router.navigate(['/app/dashboard']);
+      },
+      error: (error) => {
+        this.loading = false;
+        this.errorMessage = error?.error?.message || 'Invalid email or password!';
+      }, complete: () => {
+        this.loading = false;
+      }
+    })
+
+
   }
 
 

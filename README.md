@@ -25,4 +25,10 @@ It provides a central place to log job applications, track progress, manage recr
 - [x] Update Job
 - [x] Delete Job
 
+👤 User
+- [x] Get Users
+- [x] Change Password
+
+🛡️ Admin
+- [x] Update User Roles
 

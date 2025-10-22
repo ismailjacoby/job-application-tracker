@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { jobRoutes } from './features/jobs/pages/job.routes';
+import { jobRoutes } from './features/jobs/job.routes';
 import { DashboardLayout } from './features/layout/dashboard-layout/dashboard-layout';
 import {Home} from './features/public/pages/home/home';
 
@@ -28,7 +28,7 @@ export const routes: Routes = [
       {
         path: 'jobs',
         loadChildren: () =>
-          import('./features/jobs/pages/job.routes').then(
+          import('./features/jobs/job.routes').then(
             (m) => m.jobRoutes
           ),
       },

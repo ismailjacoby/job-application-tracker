@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ApplicationStatus } from '../../../../core/models/application-status.enum';
+import { ApplicationStatus } from '../../models/application-status.enum';
 import { JobSource } from '../../models/job-source.enum';
 import { CommonModule } from '@angular/common';
 import {

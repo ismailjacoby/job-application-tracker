@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {AuthService} from '../../../../core/services/auth.service';
 import {Router, RouterLink} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {catchError, throwError} from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ export class Signup {
   signupForm: FormGroup = new FormGroup({});
   loading = false;
   errorMessage = '';
+  successMessage = '';
 
   formBuilder = inject(FormBuilder);
   authService  = inject(AuthService);
@@ -36,7 +38,26 @@ export class Signup {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
+    if (this.signupForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.authService.signup(this.signupForm.value).pipe(
+      catchError((error) => {
+        this.loading = false;
+        this.errorMessage = error?.error?.message || 'An unexpected error occurred. Please try again.';
+        return throwError(() => error);
+      })
+    ).subscribe({next: (response) => {
+        this.loading = false;
+        this.successMessage = response;
+        setTimeout(() => this.router.navigate(['/auth/login']), 1500);
+        },
+    });
   }
 
 }

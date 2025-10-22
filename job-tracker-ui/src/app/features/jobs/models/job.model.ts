@@ -1,6 +1,6 @@
 
 import {JobSource} from '../../../features/jobs/models/job-source.enum';
-import {ApplicationStatus} from '../../../core/models/application-status.enum';
+import {ApplicationStatus} from '../../../features/jobs/models/application-status.enum';
 
 
 export interface Job {

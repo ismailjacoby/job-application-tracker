@@ -54,6 +54,13 @@ public class GlobalExceptionHandler {
         return new ErrorResponseDTO("Validation failed", message, HttpStatus.BAD_REQUEST);
     }
 
+    // Password mismatch
+    @ExceptionHandler(PasswordMismatchException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponseDTO handlePasswordMismatchException(PasswordMismatchException e) {
+        return new ErrorResponseDTO("Password mismatch", e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
     // NotFoundException
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

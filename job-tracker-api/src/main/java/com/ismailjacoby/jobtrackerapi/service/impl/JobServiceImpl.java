@@ -48,7 +48,8 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobShortDTO> getJobs() {
-        return jobRepository.findAll().stream()
+        return jobRepository.findAll()
+                .stream()
                 .map(JobShortDTO::fromEntity)
                 .toList();
     }

@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<UserDTO>> getUsers(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String direction
     ){

@@ -1,5 +1,7 @@
-import { ApplicationStatus } from './application-status.enum';
-import { JobSource } from './job-source.enum';
+
+import {JobSource} from '../../../features/jobs/models/job-source.enum';
+import {ApplicationStatus} from '../../../core/models/application-status.enum';
+
 
 export interface Job {
   title: string;

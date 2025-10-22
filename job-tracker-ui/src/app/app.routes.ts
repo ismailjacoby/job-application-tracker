@@ -24,6 +24,13 @@ export const routes: Routes = [
             (m) => m.jobRoutes
           ),
       },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./features/users/user.routes').then(
+            (m) => m.userRoutes
+          ),
+      },
     ],
   },
 ];

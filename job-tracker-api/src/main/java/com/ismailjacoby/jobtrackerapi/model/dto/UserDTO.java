@@ -4,6 +4,7 @@ import com.ismailjacoby.jobtrackerapi.model.entity.User;
 import com.ismailjacoby.jobtrackerapi.model.enums.UserRole;
 
 public record UserDTO(
+        Long id,
         String firstName,
         String lastName,
         String email,
@@ -12,6 +13,7 @@ public record UserDTO(
 ) {
     public static UserDTO fromEntity(User user){
         return new UserDTO(
+                user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),

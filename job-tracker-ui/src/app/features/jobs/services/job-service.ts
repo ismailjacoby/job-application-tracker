@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+
 import { HttpClient } from '@angular/common/http';
-import {Job, JobShort} from '../models/job.model';
+
 import {catchError, Observable, throwError} from 'rxjs';
+import {environment} from '../../../../environments/environment';
+import {Job, JobShort} from '../models/job.model';
 
 @Injectable({
   providedIn: 'root',

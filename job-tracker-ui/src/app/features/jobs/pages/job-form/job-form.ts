@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ApplicationStatus } from '../../../../core/models/application-status.enum';
-import { JobSource } from '../../../../core/models/job-source.enum';
+import { JobSource } from '../../models/job-source.enum';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { JobService } from '../../../../core/services/job-service';
+import { JobService } from '../../services/job-service';
 import {RouterLink} from '@angular/router';
 
 @Component({

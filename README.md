@@ -1,34 +1,40 @@
 # 💼 Job Tracker
 
-**Job Tracker** is a full-stack web application that helps users organize and monitor their job search process efficiently.  
-It provides a central place to log job applications, track progress, manage recruiter contacts, and record job sources.
+**Job Tracker** is a full-stack web application designed to help users efficiently manage their job search process.  
+It provides a central dashboard to log job applications, track progress, manage recruiter contacts, and monitor application sources.
 
+---
 
 ## 🧩 Tech Stack
+
 | Layer | Technology |
 |-------|-------------|
 | **Frontend** | Angular (Standalone Components), Tailwind CSS |
 | **Backend** | Spring Boot (Java 21) |
 | **Database** | PostgreSQL |
-| **Architecture** | REST API (Controller → Service → Repository) |
+| **Architecture** | RESTful API — Controller → Service → Repository |
 
+---
 
-## 🚀 Current Features
+## 🚀 Implemented Features
+
 ### 🔒 Authentication
-- [x] Signup
-- [x] Login
+- ✅ Signup
+- ✅ Login
 
-### 💼 Job
-- [x] Create Job
-- [x] Get Job
-- [x] Get Jobs
-- [x] Update Job
-- [x] Delete Job
+### 💼 Jobs
+- ✅ Create Job
+- ✅ Get Job by ID
+- ✅ Get All Jobs
+- ✅ Update Job
+- ✅ Delete Job
 
-👤 User
-- [x] Get Users
-- [x] Change Password
+### 👤 Users
+- ✅ Get All Users
+- ✅ Change Password
 
-🛡️ Admin
-- [x] Update User Roles
+### 🛡️ Admin
+- ✅ Update User Role
+- ✅ Enable / Disable Accounts
 
+---

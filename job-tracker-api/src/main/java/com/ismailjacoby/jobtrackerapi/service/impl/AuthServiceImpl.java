@@ -34,7 +34,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthDTO login(LoginRequest request) {
-
         String email = request.email().toLowerCase().trim();
 
         try{

@@ -8,7 +8,7 @@ import {catchError, Observable, throwError} from 'rxjs';
   providedIn: 'root',
 })
 export class JobService {
-  private apiUrl = `${environment.apiUrl}/job`;
+  private apiUrl = `${environment.apiUrl}/jobs`;
 
   http = inject(HttpClient);
 

@@ -8,6 +8,8 @@ import com.ismailjacoby.jobtrackerapi.model.request.PasswordRequest;
 import com.ismailjacoby.jobtrackerapi.model.request.UserAdminUpdateRequest;
 import com.ismailjacoby.jobtrackerapi.repository.UserRepository;
 import com.ismailjacoby.jobtrackerapi.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserDTO::fromEntity)
-                .toList();
+    public Page<UserDTO> getUsers(Pageable pageable) {
+        return userRepository.findAll(pageable)
+                .map(UserDTO::fromEntity);
     }
 
     @Override

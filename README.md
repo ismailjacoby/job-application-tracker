@@ -19,10 +19,16 @@ It provides a central place to log job applications, track progress, manage recr
 - [x] Login
 
 ### 💼 Job
-- [x] Add Job
+- [x] Create Job
 - [x] Get Job
 - [x] Get Jobs
 - [x] Update Job
 - [x] Delete Job
 
+👤 User
+- [x] Get Users
+- [x] Change Password
+
+🛡️ Admin
+- [x] Update User Roles
 

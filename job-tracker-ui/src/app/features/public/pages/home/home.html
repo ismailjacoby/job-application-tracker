@@ -1,93 +1,170 @@
 <!-- Navbar -->
-<header class="w-full py-4 px-6 flex justify-between items-center bg-white shadow-sm fixed top-0 left-0 z-50">
-  <div class="flex items-center gap-2">
-    <span class="text-lg font-semibold text-gray-900">Job Tracker</span>
-  </div>
+<header
+  class="fixed top-0 left-0 w-full backdrop-blur-md bg-white/70 border-b border-neutral-200 z-50"
+>
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+    <div class="flex items-center gap-2">
+      <div
+        class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold"
+      >
+        JT
+      </div>
+      <span class="text-lg font-semibold text-gray-900">Job Tracker</span>
+    </div>
 
-  <button
-    [routerLink]="['/auth/login']"
-    class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition cursor-pointer"
-  >
-    Login / Signup
-  </button>
+    <button
+      [routerLink]="['/auth/login']"
+      class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md shadow-sm hover:shadow-md hover:bg-blue-700 transition cursor-pointer"
+    >
+      Login / Signup
+    </button>
+  </div>
 </header>
 
 <!-- Hero Section -->
 <section
-  class="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-neutral-50 to-white pt-24"
+  class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-white pt-24"
 >
-  <div class="max-w-4xl">
-    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-      Simplify Your Job Search with <span class="text-blue-600">Job Tracker</span>
+  <!-- Animated background shapes -->
+  <div
+    class="absolute inset-0 -z-10 opacity-40 blur-3xl bg-[radial-gradient(circle_at_20%_20%,_rgba(37,99,235,0.3)_0%,_transparent_50%)]"
+  ></div>
+  <div
+    class="absolute inset-0 -z-10 opacity-30 blur-3xl bg-[radial-gradient(circle_at_80%_80%,_rgba(99,102,241,0.3)_0%,_transparent_50%)]"
+  ></div>
+
+  <div class="max-w-4xl fade-in-up">
+    <h1
+      class="text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight tracking-tight"
+    >
+      Streamline Your Job Search with
+      <span
+        class="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+      >Job Tracker</span
+      >
     </h1>
-    <p class="text-gray-600 text-lg md:text-xl mb-8">
-      Keep all your job applications organized, track progress, and manage recruiter details — all in one easy-to-use
-      dashboard.
+    <p class="text-gray-600 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+      Manage your applications, monitor progress, and stay organized —
+      everything you need to land your next job in one clean dashboard.
     </p>
 
-    <button
-      [routerLink]="['/auth/signup']"
-      class="px-6 py-3 bg-blue-600 text-white text-lg rounded-lg shadow hover:bg-blue-700 transition cursor-pointer"
-    >
-      Get Started
-    </button>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button
+        [routerLink]="['/auth/signup']"
+        class="px-8 py-3 bg-blue-600 text-white text-lg rounded-lg shadow hover:bg-blue-700 hover:scale-105 transition cursor-pointer"
+      >
+        Get Started
+      </button>
+
+      <button
+        [routerLink]="['/auth/login']"
+        class="px-8 py-3 bg-white border border-neutral-200 text-gray-800 text-lg rounded-lg shadow-sm hover:bg-neutral-50 hover:scale-105 transition cursor-pointer"
+      >
+        Log In
+      </button>
+    </div>
   </div>
 
-  <div class="mt-16 max-w-5xl mx-auto">
+  <div
+    class="mt-16 max-w-5xl mx-auto fade-in-up"
+    style="animation-delay: 0.3s"
+  >
     <img
       src="/images/placeholder.png"
       alt="Job Tracker Dashboard Preview"
-      class="rounded-2xl shadow-lg border border-neutral-200"
+      class="rounded-2xl shadow-2xl border border-neutral-200 hover:scale-[1.02] transition-transform duration-300"
     />
   </div>
 </section>
 
 <!-- Features Section -->
-<section class="py-20 bg-white text-center">
-  <h2 class="text-3xl font-semibold text-gray-800 mb-12">Why You'll Love Job Tracker</h2>
+<section class="py-24 bg-white text-center relative overflow-hidden">
+  <h2 class="text-4xl font-bold text-gray-900 mb-14 fade-in-up">
+    Why Professionals Choose <span class="text-blue-600">Job Tracker</span>
+  </h2>
 
   <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
-    <div class="p-6 border rounded-xl hover:shadow-md transition">
-      <div class="text-blue-600 text-4xl mb-3">💼</div>
-      <h3 class="font-semibold text-xl mb-2">Track Every Application</h3>
+    <div
+      class="p-8 rounded-2xl border border-neutral-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 fade-in-up"
+    >
+      <div class="text-blue-600 text-5xl mb-4">💼</div>
+      <h3 class="font-semibold text-xl mb-3">Track Every Application</h3>
       <p class="text-gray-600">
-        Add details like company name, recruiter contact, status, and salary — all neatly stored and easy to update.
+        Log company details, contacts, salary info, and status — everything in
+        one place with effortless editing.
       </p>
     </div>
 
-    <div class="p-6 border rounded-xl hover:shadow-md transition">
-      <div class="text-blue-600 text-4xl mb-3">📈</div>
-      <h3 class="font-semibold text-xl mb-2">Stay Organized & In Control</h3>
+    <div
+      class="p-8 rounded-2xl border border-neutral-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 fade-in-up"
+      style="animation-delay: 0.2s"
+    >
+      <div class="text-blue-600 text-5xl mb-4">📊</div>
+      <h3 class="font-semibold text-xl mb-3">Visual Progress Insights</h3>
       <p class="text-gray-600">
-        Filter and manage applications by date, source, or status so you never miss an interview or follow-up.
+        Stay organized with status filters and performance summaries to see your
+        progress at a glance.
       </p>
     </div>
 
-    <div class="p-6 border rounded-xl hover:shadow-md transition">
-      <div class="text-blue-600 text-4xl mb-3">🔒</div>
-      <h3 class="font-semibold text-xl mb-2">Secure & Personalized</h3>
+    <div
+      class="p-8 rounded-2xl border border-neutral-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 fade-in-up"
+      style="animation-delay: 0.4s"
+    >
+      <div class="text-blue-600 text-5xl mb-4">🔒</div>
+      <h3 class="font-semibold text-xl mb-3">Private & Secure</h3>
       <p class="text-gray-600">
-        Your data is safely stored with secure authentication and role-based access for users and admins.
+        Role-based authentication ensures your data stays private and accessible
+        only to you.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Call to Action Section -->
-<section class="py-20 bg-blue-600 text-white text-center">
-  <h2 class="text-3xl font-semibold mb-4">Ready to Level Up Your Job Hunt?</h2>
-  <p class="text-blue-100 mb-8 text-lg">
-    Sign up today and start tracking your applications effortlessly.
+<!-- CTA Section -->
+<section
+  class="py-24 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center"
+>
+  <h2 class="text-4xl font-bold mb-4 fade-in-up">
+    Ready to Level Up Your Job Hunt?
+  </h2>
+  <p class="text-blue-100 mb-8 text-lg max-w-2xl mx-auto fade-in-up">
+    Sign up now and take control of your job applications with a clean,
+    modern dashboard built for efficiency.
   </p>
   <button
     [routerLink]="['/auth/signup']"
-    class="px-8 py-3 bg-white text-blue-600 font-medium rounded-lg shadow hover:bg-neutral-100 transition cursor-pointer"
+    class="px-10 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-lg hover:bg-neutral-100 transition cursor-pointer hover:scale-105 fade-in-up"
+    style="animation-delay: 0.2s"
   >
-    Get Started for Free
+    Create My Account
   </button>
 </section>
 
 <!-- Footer -->
-<footer class="py-6 bg-neutral-50 text-center text-gray-500 text-sm">
+<footer class="py-8 bg-neutral-50 text-center text-gray-500 text-sm">
   © 2025 Ismail Jacoby
 </footer>
+
+<!-- Simple CSS animations -->
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .fade-in-up[style*="animation-delay"] {
+    animation-delay: inherit;
+  }
+</style>

@@ -3,6 +3,7 @@ import {JobShort} from '../../models/job.model';
 import {JobService} from '../../services/job-service';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {PdfService} from '../../services/pdf-service';
 
 @Component({
   selector: 'app-job-list',
@@ -19,6 +20,7 @@ export class JobList implements OnInit{
   searchQuery = '';
 
   jobService = inject(JobService);
+  pdfService = inject(PdfService);
 
   ngOnInit() {
     this.jobService.getJobs().subscribe({
@@ -41,5 +43,21 @@ export class JobList implements OnInit{
       job.companyName.toLowerCase().includes(this.searchQuery) ||
       job.location.toLowerCase().includes(this.searchQuery)
     );
+  }
+
+  downloadPDF(){
+    this.pdfService.downloadPDF().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'job_applications.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }, error: (error) => {
+        console.error('Error downloading PDF:', error);
+        this.errorMessage = 'Failed to download report. Please try again.';
+      }
+    })
   }
 }

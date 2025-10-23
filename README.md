@@ -28,6 +28,7 @@ It provides a central dashboard to log job applications, track progress, manage 
 - ✅ Get All Jobs
 - ✅ Update Job
 - ✅ Delete Job
+- ✅ Download PDF Report with all the applications
 
 ### 👤 Users
 - ✅ Get All Users

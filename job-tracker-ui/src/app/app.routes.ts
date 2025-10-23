@@ -1,18 +1,21 @@
 import { Routes } from '@angular/router';
-import { jobRoutes } from './features/jobs/job.routes';
-import { DashboardLayout } from './features/layout/dashboard-layout/dashboard-layout';
+import { authGuard } from './core/guards/auth-guard';
 import {Home} from './features/public/pages/home/home';
+import {guestGuard} from './core/guards/guest-guard';
+import {NotFound} from './features/public/pages/not-found/not-found';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: Home},
   {
     path: 'auth',
+    canActivate: [guestGuard],
     loadChildren: () =>
       import('./features/auth/auth.routes').then((m) => m.authRoutes),
   },
   {
     path: 'app',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/layout/dashboard-layout/dashboard-layout').then(
         (m) => m.DashboardLayout
@@ -40,5 +43,10 @@ export const routes: Routes = [
           ),
       },
     ],
+  },
+
+  {
+    path: '**',
+    component: NotFound
   },
 ];

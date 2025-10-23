@@ -33,6 +33,9 @@ public class User extends BaseEntity<Long> implements UserDetails {
 
     private boolean enabled;
 
+    @OneToMany(mappedBy = "user")
+    private List<Job> jobs;
+
     @Override
     public String getUsername() {
         return getEmail();

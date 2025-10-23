@@ -1,6 +1,7 @@
 package com.ismailjacoby.jobtrackerapi.exception;
 
 import com.ismailjacoby.jobtrackerapi.model.dto.ErrorResponseDTO;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,6 +18,14 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    //  AccessDenied Exception
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponseDTO handleAccessDeniedException(AccessDeniedException e) {
+        return new ErrorResponseDTO("Forbidden", e.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
 
     // BadCredentialsException (incorrect username or password)
     @ExceptionHandler(BadCredentialsException.class)

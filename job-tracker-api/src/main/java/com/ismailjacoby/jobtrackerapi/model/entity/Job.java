@@ -48,4 +48,8 @@ public class Job extends BaseEntity<Long> {
     @Column(length = 200)
     private String notes;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }

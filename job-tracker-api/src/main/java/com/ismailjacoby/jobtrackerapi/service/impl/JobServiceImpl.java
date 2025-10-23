@@ -4,9 +4,13 @@ import com.ismailjacoby.jobtrackerapi.exception.NotFoundException;
 import com.ismailjacoby.jobtrackerapi.model.dto.JobDTO;
 import com.ismailjacoby.jobtrackerapi.model.dto.JobShortDTO;
 import com.ismailjacoby.jobtrackerapi.model.entity.Job;
+import com.ismailjacoby.jobtrackerapi.model.entity.User;
 import com.ismailjacoby.jobtrackerapi.model.request.JobRequest;
 import com.ismailjacoby.jobtrackerapi.repository.JobRepository;
+import com.ismailjacoby.jobtrackerapi.repository.UserRepository;
 import com.ismailjacoby.jobtrackerapi.service.JobService;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +20,20 @@ import java.util.Optional;
 public class JobServiceImpl implements JobService {
 
     private final JobRepository jobRepository;
+    private final UserRepository userRepository;
 
-    public JobServiceImpl(JobRepository jobRepository) {
+    public JobServiceImpl(JobRepository jobRepository, UserRepository userRepository) {
         this.jobRepository = jobRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public void createJob(JobRequest request) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found."));
+
         Job job = new Job();
         job.setTitle(request.title());
         job.setCompanyName(request.companyName());
@@ -36,19 +47,32 @@ public class JobServiceImpl implements JobService {
         job.setRecruiterPhone(request.recruiterPhone());
         job.setSalary(request.salary());
         job.setNotes(request.notes());
+        job.setUser(user);
 
         jobRepository.save(job);
     }
 
     @Override
     public Optional<JobDTO> getJobById(Long id) {
-        return jobRepository.findById(id)
-                .map(JobDTO::fromEntity);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Job with id " + id + " not found."));
+
+        if(!job.getUser().getEmail().equals(email)){
+            throw new AccessDeniedException("You are not authorized to view this job.");
+        }
+
+        return Optional.of(JobDTO.fromEntity(job));
     }
 
     @Override
     public List<JobShortDTO> getJobs() {
-        return jobRepository.findAll()
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found."));
+
+        return jobRepository.findByUser(user)
                 .stream()
                 .map(JobShortDTO::fromEntity)
                 .toList();
@@ -56,8 +80,15 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobDTO updateJob(Long id, JobRequest request) {
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
         Job job = jobRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Job with id " + id + " not found."));
+                .orElseThrow(() -> new NotFoundException("Job not found."));
+
+        if(!job.getUser().getEmail().equals(email)){
+            throw new AccessDeniedException("You are not authorized to modify this job.");
+        }
 
         job.setTitle(request.title());
         job.setCompanyName(request.companyName());
@@ -79,9 +110,16 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void deleteJobById(Long id) {
-        if (!jobRepository.existsById(id)) {
-            throw new NotFoundException("Job with id " + id + " not found.");
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Job not found."));
+
+        if(!job.getUser().getEmail().equals(email)){
+            throw new AccessDeniedException("You are not authorized to delete this job.");
         }
+
         jobRepository.deleteById(id);
     }
 }

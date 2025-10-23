@@ -6,7 +6,7 @@ import {NotFound} from './features/public/pages/not-found/not-found';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: Home},
+  {path: 'home', component: Home, canActivate: [guestGuard]},
   {
     path: 'auth',
     canActivate: [guestGuard],
@@ -44,7 +44,6 @@ export const routes: Routes = [
       },
     ],
   },
-
   {
     path: '**',
     component: NotFound

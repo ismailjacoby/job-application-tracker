@@ -90,14 +90,27 @@
             <td class="px-4 py-3">{{ job.jobSource }}</td>
             <td class="px-4 py-3 text-right space-x-2">
               <button
+                (click)="openJobModal(job.id)"
                 class="px-3 py-1 text-xs text-white rounded-md bg-blue-600 hover:bg-blue-700 transition cursor-pointer"
               >
                 View
               </button>
+
+
             </td>
           </tr>
         }
       </tbody>
     </table>
   </div>
+
+  <!-- Modal -->
+  <app-job-modal
+    *ngIf="selectedJobId"
+    [jobId]="selectedJobId"
+    (close)="selectedJobId = null"
+    (jobUpdated)="onJobUpdated()"
+  ></app-job-modal>
+
 </div>
+

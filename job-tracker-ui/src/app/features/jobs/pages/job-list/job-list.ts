@@ -4,11 +4,12 @@ import {JobService} from '../../services/job-service';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {PdfService} from '../../services/pdf-service';
+import {JobModal} from '../job-modal/job-modal';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, JobModal],
   templateUrl: './job-list.html',
   styleUrl: './job-list.css'
 })
@@ -18,22 +19,28 @@ export class JobList implements OnInit{
   filteredJobs: JobShort[] = [];
   loading = true;
   searchQuery = '';
+  selectedJobId: number | null = null;
 
   jobService = inject(JobService);
   pdfService = inject(PdfService);
 
   ngOnInit() {
+    this.loadJobs();
+  }
+
+  loadJobs() {
+    this.loading = true;
     this.jobService.getJobs().subscribe({
       next: (data) => {
         this.jobs = data;
         this.filteredJobs = data;
         this.loading = false;
-      }, error: (error) => {
+      },
+      error: () => {
         this.errorMessage = 'Failed to load jobs.';
         this.loading = false;
-      }
-      }
-    )
+      },
+    });
   }
 
   onSearch(query: string) {
@@ -59,5 +66,16 @@ export class JobList implements OnInit{
         this.errorMessage = 'Failed to download report. Please try again.';
       }
     })
+  }
+
+  openJobModal(id: number) {
+    this.selectedJobId = id;
+  }
+
+
+
+  onJobUpdated() {
+    this.loadJobs();
+    this.selectedJobId = null;
   }
 }

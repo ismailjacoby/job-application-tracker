@@ -20,6 +20,10 @@ export class JobService {
     });
   }
 
+  getJobById(id: number): Observable<Job> {
+    return this.http.get<Job>(`${this.apiUrl}/${id}`);
+  }
+
   getJobs(): Observable<JobShort[]> {
     return this.http.get<JobShort[]>(this.apiUrl).pipe(
       catchError((error) => {
@@ -28,4 +32,9 @@ export class JobService {
       })
     );
   }
+
+  updateJob(id: number, data: Partial<Job>): Observable<Job> {
+    return this.http.put<Job>(`${this.apiUrl}/${id}`, data);
+  }
+
 }

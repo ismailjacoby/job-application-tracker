@@ -2,10 +2,11 @@ import {Component, inject, OnInit} from '@angular/core';
 import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {CommonModule} from '@angular/common';
+import {UserModal} from '../../components/user-modal/user-modal';
 
 @Component({
   selector: 'app-user-list',
-  imports: [CommonModule],
+  imports: [CommonModule, UserModal],
   templateUrl: './user-list.html',
   styleUrl: './user-list.css'
 })
@@ -13,6 +14,7 @@ export class UserList implements OnInit{
   users: User[] = [];
   currentPage = 0;
   totalPages = 0;
+  selectedUserId: number | null = null;
 
   userService = inject(UserService);
 
@@ -42,7 +44,12 @@ export class UserList implements OnInit{
   }
 
   editUser(id: number): void {
-    console.log('Edit user', id);
+    this.selectedUserId = id;
+  }
+
+  onUserUpdated(): void {
+    this.loadUsers(this.currentPage);
+    this.selectedUserId = null;
   }
 
 }

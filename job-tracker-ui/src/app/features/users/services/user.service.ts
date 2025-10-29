@@ -26,4 +26,13 @@ export class UserService {
 
     return this.http.get<PageResponse<User>>(this.apiUrl, { params });
   }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
+  }
+
+  updateUserByAdmin(id: number, data: { role: string; enabled: boolean }): Observable<string> {
+    return this.http.put(`${this.apiUrl}/${id}`, data, { responseType: 'text' });
+  }
+
 }

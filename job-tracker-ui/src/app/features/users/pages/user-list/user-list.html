@@ -18,7 +18,7 @@
           <td class="p-2">{{ user.id }}</td>
           <td class="p-2">{{ user.firstName }} {{ user.lastName }}</td>
           <td class="p-2">{{ user.email }}</td>
-          <td class="p-2">{{ user.role }}</td>
+          <td class="p-2">{{ user.role | titlecase }}</td>
           <td class="p-2">
             <span
               [ngClass]="{
@@ -41,6 +41,14 @@
       }
     </tbody>
   </table>
+
+  <app-user-modal
+    *ngIf="selectedUserId"
+    [userId]="selectedUserId"
+    (close)="selectedUserId = null"
+    (userUpdated)="onUserUpdated()"
+  ></app-user-modal>
+
 
   <div class="flex justify-between mt-4">
     <button

@@ -1,6 +1,8 @@
 package com.ismailjacoby.jobtrackerapi.controller;
 
+import com.ismailjacoby.jobtrackerapi.exception.NotFoundException;
 import com.ismailjacoby.jobtrackerapi.model.dto.UserDTO;
+import com.ismailjacoby.jobtrackerapi.model.entity.User;
 import com.ismailjacoby.jobtrackerapi.model.request.PasswordRequest;
 import com.ismailjacoby.jobtrackerapi.model.request.UserAdminUpdateRequest;
 import com.ismailjacoby.jobtrackerapi.service.UserService;
@@ -50,4 +52,13 @@ public class UserController {
         return ResponseEntity.ok("User updated successfully");
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new NotFoundException("User with id not found."));
+    }
+
+
 }
